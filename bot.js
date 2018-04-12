@@ -1,17 +1,14 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
- 
  client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
 
-        console.log(`----------------`);
-      console.log(`Your Bot in  ${client.guilds.size} Servers `);
-              console.log(`----------------`);
-      console.log(`Logged in as * [ " ${client.user.username} " ] Users! [ " ${client.users.size} " ]`);
-              console.log(`----------------`);
-  console.log(`Logged in as * [ " ${client.user.username} " ] channels! [ " ${client.channels.size} " ]`);
-    console.log(`----------------`);
-
+client.on('message', msg => {
+  if (msg.content === 'ping') {
+    msg.reply('Pong!');
+  }
 });
 
 
