@@ -66,7 +66,7 @@ client.on('message', message => {
         ];
         
         var x3 = Math.floor(Math.random()*x.length)
-        message.channel.send(`لديك من الوقت 15 ثانية لتفكيك هذه الكلمة __**${x[x3]}**__ `).then(msg1=> {
+        message.channel.send(`لديك من الوقت 15 ثانية لتفكيك هذه الكلمة **${x[x3]}** `).then(msg1=> {
             var r = message.channel.awaitMessages(msg => msg.content == x2[x3], {
                 maxMatches : 1,
                 time : 15000,
@@ -74,7 +74,7 @@ client.on('message', message => {
             })
         r.catch(() => {
             return message.channel.send(`:negative_squared_cross_mark: انتهى الوقت ولم يتم الأجابة عن السؤال
-            الأجابة الصحيحة  __**${x2[x3]}**__`)
+            الأجابة الصحيحة  **${x2[x3]}**`)
         })
         
         r.then((collected)=> {
@@ -165,7 +165,7 @@ client.on('message', message => {
         ];
         
         var x3 = Math.floor(Math.random()*x.length)
-        message.channel.send(` __**${x[x3]}**__
+        message.channel.send(` **${x[x3]}**
  لديك من الوقت 20 ثانية للأجابة`).then(msg1=> {
             var r = message.channel.awaitMessages(msg => msg.content == x2[x3], {
                 maxMatches : 1,
@@ -174,7 +174,7 @@ client.on('message', message => {
             })
         r.catch(() => {
             return message.channel.send(`:negative_squared_cross_mark: انتهى الوقت ولم يتم الأجابة عن السؤال
-            الأجابة الصحيحة هي __**${x2[x3]}**__`)
+            الأجابة الصحيحة هي **${x2[x3]}**`)
         })
         
         r.then((collected)=> {
@@ -263,7 +263,7 @@ client.on('message', message => {
         ];
         
         var x3 = Math.floor(Math.random()*x.length)
-        message.channel.send(` ماهو علم  __**${x[x3]}**__ ؟
+        message.channel.send(` ماهو علم  **${x[x3]}** ؟
   لديك من الوقت 20 ثانيه للأجابة`).then(msg1=> {
             var r = message.channel.awaitMessages(msg => msg.content == x2[x3], {
                 maxMatches : 1,
@@ -272,7 +272,7 @@ client.on('message', message => {
             })
         r.catch(() => {
             return message.channel.send(`:negative_squared_cross_mark: انتهى الوقت ولم يتم الأجابة عن السؤال
-            الأجابة الصحيحة هي __**${x2[x3]}**__`)
+            الأجابة الصحيحة هي **${x2[x3]}**`)
         })
         
         r.then((collected)=> {
@@ -330,7 +330,7 @@ client.on('message', message => {
         ];
         
         var x3 = Math.floor(Math.random()*x.length)
-        message.channel.send(`   :  __**${x[x3]}**__ 
+        message.channel.send(`   :  **${x[x3]}** 
     لديك 20 ثانية للأجابة `).then(msg1=> {
             var r = message.channel.awaitMessages(msg => msg.content == x2[x3], {
                 maxMatches : 1,
@@ -339,7 +339,7 @@ client.on('message', message => {
             })
         r.catch(() => {
             return message.channel.send(`:negative_squared_cross_mark: انتهى الوقت ولم يتم الأجابة عن السؤال
-            الأجابة الصحيحة هي __**${x2[x3]}**__`)
+            الأجابة الصحيحة هي **${x2[x3]}**`)
         })
         
         r.then((collected)=> {
@@ -394,7 +394,7 @@ client.on('message', message => {
         ];
         
         var x3 = Math.floor(Math.random()*x.length)
-        message.channel.send(`   :  __**${x[x3]}**__ 
+        message.channel.send(`   :  **${x[x3]}** 
     لديك 20 ثانية للأجابة `).then(msg1=> {
             var r = message.channel.awaitMessages(msg => msg.content == x2[x3], {
                 maxMatches : 1,
@@ -403,7 +403,7 @@ client.on('message', message => {
             })
         r.catch(() => {
             return message.channel.send(`:negative_squared_cross_mark: انتهى الوقت ولم يتم الأجابة عن السؤال
-            الأجابة الصحيحة هي __**${x2[x3]}**__`)
+            الأجابة الصحيحة هي **${x2[x3]}**`)
         })
         
         r.then((collected)=> {
@@ -420,7 +420,7 @@ client.on('message', message => {
       if (!message.content.startsWith(prefix)) return;
       var args = message.content.split(' ').slice(1);
       var argresult = args.join(' ');
-      if (message.author.id == 433676279472979988) return;
+      if (message.author.id == 434054716029403176) return;
     
     
     if (message.content.startsWith(prefix + 'playing')) {
