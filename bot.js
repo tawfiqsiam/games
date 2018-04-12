@@ -69,7 +69,7 @@ client.on('message', message => {
         message.channel.send(`لديك من الوقت 15 ثانية لتفكيك هذه الكلمة **${x[x3]}** `).then(msg1=> {
             var r = message.channel.awaitMessages(msg => msg.content == x2[x3], {
                 maxMatches : 1,
-                time : 15000,
+                time : 20000,
                 errors : ['time']
             })
         r.catch(() => {
@@ -165,11 +165,11 @@ client.on('message', message => {
         ];
         
         var x3 = Math.floor(Math.random()*x.length)
-        message.channel.send(` **${x[x3]}**
+        message.channel.send(` ${x[x3]}
  لديك من الوقت 20 ثانية للأجابة`).then(msg1=> {
             var r = message.channel.awaitMessages(msg => msg.content == x2[x3], {
                 maxMatches : 1,
-                time : 10000,
+                time : 20000,
                 errors : ['time']
             })
         r.catch(() => {
@@ -267,7 +267,7 @@ client.on('message', message => {
   لديك من الوقت 20 ثانيه للأجابة`).then(msg1=> {
             var r = message.channel.awaitMessages(msg => msg.content == x2[x3], {
                 maxMatches : 1,
-                time : 20000,
+                time : 30000,
                 errors : ['time']
             })
         r.catch(() => {
@@ -334,7 +334,7 @@ client.on('message', message => {
     لديك 20 ثانية للأجابة `).then(msg1=> {
             var r = message.channel.awaitMessages(msg => msg.content == x2[x3], {
                 maxMatches : 1,
-                time : 20000,
+                time : 30000,
                 errors : ['time']
             })
         r.catch(() => {
@@ -398,7 +398,7 @@ client.on('message', message => {
     لديك 20 ثانية للأجابة `).then(msg1=> {
             var r = message.channel.awaitMessages(msg => msg.content == x2[x3], {
                 maxMatches : 1,
-                time : 20000,
+                time : 30000,
                 errors : ['time']
             })
         r.catch(() => {
