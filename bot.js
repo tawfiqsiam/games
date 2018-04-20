@@ -10,7 +10,8 @@ client.on('message', msg => {
     msg.reply('Pong!');
   }
 });
-
+let points = JSON.parse(fs.readFileSync('./fkk/3wasmPTS.json', 'utf8'));
+     
 var prefix = "!";
 
 client.on('message', message => {
@@ -46,6 +47,7 @@ msg.channel.send(`${item.type}`).then(() => {
 }
 });
 
+//Made By Jack
 
 
 client.on('message', message => {
@@ -58,11 +60,10 @@ if (message.content.startsWith(prefix + 'نقاطي')) {
 	.setDescription(`نقاطك: \`${userData.points}\``)
 	message.channel.sendEmbed(embed)
   }
-  fs.writeFile("./3wasmPTS.json", JSON.stringify(points), (err) => {
+  fs.writeFile("./l3b/3wasmPTS.json", JSON.stringify(points), (err) => {
     if (err) console.error(err)
   })
 });
-
    
 client.on('message', message => {
     if (message.content == "فكك") {
