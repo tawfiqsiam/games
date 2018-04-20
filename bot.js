@@ -13,13 +13,13 @@ client.on('message', msg => {
 });
 let points = JSON.parse(fs.readFileSync('./fkk/3wasmPTS.json', 'utf8'));
      
-var prefix = "ع";
+var prefix = "#";
 
 client.on('message', message => {
 if (!points[message.author.id]) points[message.author.id] = {
 	points: 0,
   };
-if (message.content.startsWith(prefix + 'واصم')) {
+if (message.content.startsWith(prefix + 'عواصم')) {
 	if(!message.channel.guild) return
 
 const type = require('./fkk/3wasm.json');
@@ -34,7 +34,7 @@ msg.channel.send(`${item.type}`).then(() => {
         message.channel.awaitMessages(filter, { maxMatches: 1, time: 15000, errors: ['time'] })
         .then((collected) => {
 		message.channel.send(`${collected.first().author} ✅ **مبروك لقد كسبت نقطه
-لمعرفة نقطاك الرجاء كتابة !نقاطي**`);
+لمعرفة نقطاك الرجاء كتابة #نقاطي**`);
 		console.log(`[Typing] ${collected.first().author} typed the word.`);
 			let userData = points[message.author.id];
 			userData.points++;
