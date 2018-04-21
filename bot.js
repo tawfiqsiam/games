@@ -3,10 +3,10 @@ const client = new Discord.Client();
 const fs = require('fs');
 
  client.on('ready', () => {
+client.user.setGame('Widely -Server')
   console.log(`Logged in as ${client.user.tag}!`);
 });
-{
-client.user.setGame('Widely -Server')
+
 client.on('message', msg => {
   if (msg.content === 'ping') {
     msg.reply('Pong!');
