@@ -1,6 +1,35 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs');
+const dateFormat = require('dateformat');
+const arraySort = require('array-sort'),
+client.on('message' , async (message) => {
+    if(message.content.startsWith(prefix + "#topinv")) {
+
+  let invites = await message.guild.fetchInvites();
+
+    invites = invites.array();
+
+    arraySort(invites, 'uses', { reverse: true });
+
+    let possibleInvites = [['User', 'Uses']];
+    invites.forEach(i => {
+      possibleInvites.push([i.inviter.username , i.uses]);
+    })
+    const embed = new Discord.RichEmbed()
+    .setColor(0x7289da)
+    .setTitle("دعوات السيرفر")
+    .addField(' المتصدرين' , `\`\`\`${table.table(possibleInvites)}\`\`\``)
+
+    message.channel.send(embed)
+    }
+});
+client.on('message', msg => {
+    if (msg.content === '#inviter') {
+            msg.guild.fetchInvites()
+     .then(invites => msg.reply(`انت جبت   ${invites.find(invite => invite.inviter.id === msg.author.id).uses} عضو لهاذا السيرفر`)) 
+    }
+  });
 
  client.on('ready', () => {
 client.user.setGame('Widely -Server.')
