@@ -3,6 +3,8 @@ const client = new Discord.Client();
 const fs = require('fs');
 const dateFormat = require('dateformat');
 const arraySort = require('array-sort'),
+       table = require('table');
+
 client.on('message' , async (message) => {
     if(message.content.startsWith(prefix + "#topinv")) {
 
