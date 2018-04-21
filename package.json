@@ -32,6 +32,9 @@
     "dateformat": "3.0.3",
     "canvas": "1.6.10",
     "jimp": "0.2.28",
+    "array-sort": "1.0.0",
+    "dateformat": "3.0.3",
+    "table": "4.0.3",
     "request": "2.81.0"
   }
 
