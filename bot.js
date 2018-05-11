@@ -1,4 +1,3 @@
-
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const ytdl = require('ytdl-core');
@@ -6,13 +5,15 @@ const request = require('request');
 const fs = require('fs');
 const getYoutubeID = require('get-youtube-id');
 const fetchVideoInfo = require('youtube-info');
+
 const yt_api_key = "AIzaSyDeoIH0u1e72AtfpwSKKOSy3IPp2UHzqi4";
+const prefix = '!';
 const discord_token = process.env.BOT_TOKEN;
 client.login(discord_token);
 client.on('ready', function() {
 	console.log(`i am ready ${client.user.username}`);
+    client.user.setGame(prefix + 'مساعدة || Moha');
 });
-
 /*
 ////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -44,13 +45,13 @@ var download = function(uri, filename, callback) {
 		request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
 	});
 };
+
 client.on('message', function(message) {
-var prefix = "!";
 	const member = message.member;
 	const mess = message.content.toLowerCase();
 	const args = message.content.split(' ').slice(1).join(' ');
 
-	if (mess.startsWith(prefix + 'play')) {
+	if (mess.startsWith(prefix + 'شغل')) {
 		if (!message.member.voiceChannel) return message.channel.send(':no_entry: || **__يجب ان تكون في روم صوتي__**');
 		// if user is not insert the URL or song title
 		if (args.length == 0) {
@@ -94,7 +95,7 @@ var prefix = "!";
 						.addField('||**__تم تشغيل __**', `**${videoInfo.title}
 							  **`)
 						.setColor("RANDOM")
-                        .addField(`__من قبل__: ${message.author.username}`, `**By Moha**`)
+                        .addField(`__من قبل__: ${message.author.username}`, `**__Moha__**`)
 						.setThumbnail(videoInfo.thumbnailUrl)
 							
 					// .setDescription('?')
@@ -102,12 +103,12 @@ var prefix = "!";
 					message.channel.send(`__تم التشغيل__
 							**${videoInfo.title}** __اسم الأغنية__
 		      ${message.author.username}         __بواسطة__ `)
-					// client.user.setGame(videoInfo.title,'https://www.twitch.tv/Moha');
+					
 				});
 			});
 		}
 	}
-	else if (mess.startsWith(prefix + 'skip')) {
+	else if (mess.startsWith(prefix + 'تخطي')) {
 		if (!message.member.voiceChannel) return message.channel.send(':no_entry: || **__يجب ان تكون في روم صوتي__**');
 		message.channel.send(':ok:').then(() => {
 			skip_song(message);
@@ -115,37 +116,37 @@ var prefix = "!";
 			if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
 		});
 	}
-	else if (message.content.startsWith(prefix + 'vol')) {
+	else if (message.content.startsWith(prefix + 'صوت')) {
 		if (!message.member.voiceChannel) return message.channel.send(':no_entry: || **__يجب ان تكون في روم صوتي__**');
 		// console.log(args)
-		if (args > 999999999) return message.channel.send('1 - 999999999 || **__لا أكثر ولا أقل__**')
-		if (args < 1) return message.channel.send('1 - 999999999 || **__لا أكثر ولا أقل__**')
+		if (args > 100) return message.channel.send('1 - 100 || **__لا أكثر ولا أقل__**')
+		if (args < 1) return message.channel.send('1 - 100 || **__لا أكثر ولا أقل__**')
 		dispatcher.setVolume(1 * args / 50);
 		message.channel.sendMessage(`**__ ${dispatcher.volume*50}% مستوى الصوت __**`);
 	}
-	else if (mess.startsWith(prefix + 'stop')) {
+	else if (mess.startsWith(prefix + 'وقف')) {
 		if (!message.member.voiceChannel) return message.channel.send(':no_entry: || **__يجب ان تكون في روم صوتي__**');
 		message.channel.send(':ok:').then(() => {
 			dispatcher.pause();
 		});
 	}
-	else if (mess.startsWith(prefix + 'resume')) {
+	else if (mess.startsWith(prefix + 'كمل')) {
 		if (!message.member.voiceChannel) return message.channel.send(':no_entry: || **__يجب ان تكون في روم صوتي__**');
 			message.channel.send(':ok:').then(() => {
 			dispatcher.resume();
 		});
 	}
-	else if (mess.startsWith(prefix + 'leave')) {
+	else if (mess.startsWith(prefix + 'اطلع')) {
 		if (!message.member.voiceChannel) return message.channel.send(':no_entry: || **__يجب ان تكون في روم صوتي__**');
 		message.channel.send(':ok:');
 		var server = server = servers[message.guild.id];
 		if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
 	}
-	else if (mess.startsWith(prefix + 'come')) {
+	else if (mess.startsWith(prefix + 'تعال')) {
 		if (!message.member.voiceChannel) return message.channel.send(':no_entry: || **__يجب ان تكون في روم صوتي__**');
 		message.member.voiceChannel.join().then(message.channel.send(':ok:'));
 	}
-	else if (mess.startsWith(prefix + 'play')) {
+	else if (mess.startsWith(prefix + 'شغل')) {
 		if (!message.member.voiceChannel) return message.channel.send(':no_entry: || **__يجب ان تكون في روم صوتي__**');
 		if (isPlaying == false) return message.channel.send(':anger: || **__تم التوقيف__**');
 		let playing_now_info = new Discord.RichEmbed()
@@ -220,6 +221,7 @@ function add_to_queue(strID) {
 function search_video(query, cb) {
 	request("https://www.googleapis.com/youtube/v3/search?part=id&type=video&q=" + encodeURIComponent(query) + "&key=" + yt_api_key, function(error, response, body) {
 		var json = JSON.parse(body);
+		cb(json.items[0].id.videoId);
 	});
 }
 
@@ -228,36 +230,34 @@ function isYoutube(str) {
 	return str.toLowerCase().indexOf('youtube.com') > -1;
 }
  client.on('message', message => {
-var prefix = "!";
-     if (message.content === prefix +"help") {
+     if (message.content === prefix +"مساعدة") {
     const embed = new Discord.RichEmbed()
      .setColor("RANDOM")
-     .addField(`**__أوامر اغاني بوت دراجون__**`,`
-.    **${prefix}come**
+     .addField(`**__أوامر البوت__**`,`
+.    **${prefix}تعال**
 	 عشان يدخل البوت الروم
-	 **${prefix}play**
+	 **${prefix}شغل**
 	 امر تشغيل الأغنية , !شغل الرابط او اسم الأعنية
-	 **${prefix}skip**
+	 **${prefix}تخطي**
 	 تغير الأغنية
-	 **${prefix}stop**
+	 **${prefix}وقف**
 	 ايقاف الأغنية
-	 **${prefix}resume**
+	 **${prefix}كمل**
      مواصلة الأغنية
-	 **${prefix}vol**
-	 مستوى الصوت 1-999999999
-	 **${prefix}leave**
+	 **${prefix}صوت**
+	 مستوى الصوت 1-100
+	 **${prefix}اطلع**
 	 خروج البوت من الروم
 	 
 	 
 	 prefix = ${prefix}
 	 ping = ${Date.now() - message.createdTimestamp}ms
-	 for help = <@!2344543680726302839> 
+	 for help = <@!234454368072630283> 
 	 By Moha	 `)
 
       message.channel.send({embed});
 	 }
 	});
-
 client.on('ready',  () => {
     console.log('تم تشغيل :dragon  ');
     console.log(`Logged in as * [ " ${client.user.username} " ] servers! [ " ${client.guilds.size} " ]`);
