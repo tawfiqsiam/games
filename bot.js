@@ -48,6 +48,7 @@ var download = function(uri, filename, callback) {
 };
 
 client.on('message', function(message) {
+var prefix = "!";
 	const member = message.member;
 	const mess = message.content.toLowerCase();
 	const args = message.content.split(' ').slice(1).join(' ');
@@ -96,7 +97,7 @@ client.on('message', function(message) {
 						.addField('||**__تم تشغيل __**', `**${videoInfo.title}
 							  **`)
 						.setColor("RANDOM")
-                        .addField(`__من قبل__: ${message.author.username}`, `**__Moha__**`)
+                        .addField(`__من قبل__: ${message.author.username}`, `**By Moha**`)
 						.setThumbnail(videoInfo.thumbnailUrl)
 							
 					// .setDescription('?')
@@ -136,8 +137,7 @@ client.on('message', function(message) {
 			message.channel.send(':ok:').then(() => {
 			dispatcher.resume();
 		});
-  }
-
+	}
 	else if (mess.startsWith(prefix + 'leave')) {
 		if (!message.member.voiceChannel) return message.channel.send(':no_entry: || **__يجب ان تكون في روم صوتي__**');
 		message.channel.send(':ok:');
@@ -223,7 +223,6 @@ function add_to_queue(strID) {
 function search_video(query, cb) {
 	request("https://www.googleapis.com/youtube/v3/search?part=id&type=video&q=" + encodeURIComponent(query) + "&key=" + yt_api_key, function(error, response, body) {
 		var json = JSON.parse(body);
-		cb(json.items[0].id.videoId);
 	});
 }
 
@@ -232,10 +231,11 @@ function isYoutube(str) {
 	return str.toLowerCase().indexOf('youtube.com') > -1;
 }
  client.on('message', message => {
-     if (message.content === prefix +"مساعدة") {
+var prefix = "!";
+     if (message.content === prefix +"help") {
     const embed = new Discord.RichEmbed()
      .setColor("RANDOM")
-     .addField(`**__أوامر البوت__**`,`
+     .addField(`**__أوامر اغاني بوت دراجون__**`,`
 .    **${prefix}come**
 	 عشان يدخل البوت الروم
 	 **${prefix}play**
@@ -260,6 +260,13 @@ function isYoutube(str) {
       message.channel.send({embed});
 	 }
 	});
+
+client.on('ready',  () => {
+    console.log('تم تشغيل :dragon  ');
+    console.log(`Logged in as * [ " ${client.user.username} " ] servers! [ " ${client.guilds.size} " ]`);
+    console.log(`Logged in as * [ " ${client.user.username} " ] Users! [ " ${client.users.size} " ]`);
+    console.log(`Logged in as * [ " ${client.user.username} " ] channels! [ " ${client.channels.size} " ]`);
+  });
 
 client.on('message', message => {
 var prefix = "#";
