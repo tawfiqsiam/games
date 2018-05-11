@@ -137,17 +137,7 @@ client.on('message', function(message) {
 			dispatcher.resume();
 		});
   }
-  else if(message.content.startsWith(prefix + 'time')) {
-    if (!message.member.voiceChannel) return message.channel.send(':no_entry: || **__يجب ان تكون في روم صوتي__**');
-    if (!message.guild.voiceConnection) {
-      throw `I am not connected in a voice channel, please add some songs to the queue first with ${message.guild.settings.prefix}add`;
-    }
-  
-    const handler = client.queue.get(message.guild.id);
-    if (!handler || handler.playing === false) throw 'I am not playing music.';
-    return message.send(`🕰 Time remaining: ${moment.duration((handler.songs[0].seconds * 1000) - message.guild.voiceConnection.dispatcher.time).format('h:mm:ss', { trim: false })}`);
-  
-  }
+
 	else if (mess.startsWith(prefix + 'اطلع')) {
 		if (!message.member.voiceChannel) return message.channel.send(':no_entry: || **__يجب ان تكون في روم صوتي__**');
 		message.channel.send(':ok:');
